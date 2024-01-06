@@ -1,0 +1,11 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "The back-end package for the long covid symptom tracker app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "author": "David Sims",
+  "license": "ISC"
+}

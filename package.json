@@ -1,0 +1,19 @@
+{
+  "name": "symptom-tracker",
+  "version": "1.0.0",
+  "description": "A Long Covid symptom and remedy tracker.",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidsims9t/symptom-tracker.git"
+  },
+  "author": "David Sims",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/davidsims9t/symptom-tracker/issues"
+  },
+  "homepage": "https://github.com/davidsims9t/symptom-tracker#readme"
+}
