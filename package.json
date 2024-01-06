@@ -6,6 +6,9 @@
   "scripts": {
     "test": "vitest"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/davidsims9t/symptom-tracker.git"

@@ -32,4 +32,8 @@ export class Result<T> {
     static ok = <T>(value?: T) => {
         return new Result(true, undefined, value);
     }
+
+    static error = (value: string) => {
+        return new Result(true, value, null);
+    }
 }
