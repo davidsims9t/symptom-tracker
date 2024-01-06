@@ -10,6 +10,10 @@
   "author": "David Sims",
   "license": "ISC",
   "dependencies": {
+    "@apollo/server": "^4.10.0",
+    "@clerk/clerk-sdk-node": "^4.13.4",
+    "@prisma/client": "^5.7.1",
+    "jwt-decode": "^4.0.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

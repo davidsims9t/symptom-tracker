@@ -4,12 +4,14 @@ import { UniqueEntityID } from "../../shared/domain/id";
 import UserCreated from "./events/user-created";
 import UserDeleted from "./events/user-deleted";
 import UserLogin from "./events/user-login";
+import UserBirthDate from "./user-birthdate";
 import UserEmail from "./user-email";
 import UserName from "./user-name";
 import UserPassword from "./user-password";
 
 export type UserProps = {
     email: UserEmail;
+    birthDate: UserBirthDate;
     username: UserName;
     password: UserPassword;
     isEmailVerified?: boolean;
@@ -23,6 +25,10 @@ export type UserProps = {
 export class User extends AggregateRoot<UserProps> {
     constructor(props: UserProps, id?: UniqueEntityID) {
         super(props, id);
+    }
+
+    get value() {
+        return this.props;
     }
 
     static create(props: UserProps, id?: UniqueEntityID) {
