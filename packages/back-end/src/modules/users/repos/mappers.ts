@@ -26,11 +26,12 @@ export const toDomain = (user: UserDto): User => {
 
 export const toDto = (user: User): UserDto => {
     return {
-        username: user.value.username,
+        username: user.value.username.value,
         password: user.value.password.value,
         email: user.value.email.value,
         birthDay: user.value.birthDate.props.birthDay,
-        birthDay: user.value.birthDate.props.birthDay,
+        birthMonth: user.value.birthDate.props.birthMonth,
+        birthYear: user.value.birthDate.props.birthYear,
     };
 }
 
