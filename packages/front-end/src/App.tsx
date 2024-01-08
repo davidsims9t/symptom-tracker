@@ -1,6 +1,6 @@
 import { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
-// import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { ClerkProvider } from "@clerk/clerk-react";
 import "normalize.css";
@@ -18,7 +18,7 @@ export const App = () => {
     return (
         <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
             <Provider>
-                {/* <Navbar /> */}
+                <Navbar />
                 <BrowserRouter>
                     <Suspense fallback={<Loader />}>
                         <Routes>

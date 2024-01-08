@@ -7,7 +7,6 @@ import {
 } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context';
 import { useAuth } from "@clerk/clerk-react";
-import { ChakraProvider } from '@chakra-ui/react';
 
 export default function Provider({
   children,
@@ -37,8 +36,6 @@ export default function Provider({
   }, []);
 
   return (
-    <ChakraProvider>
-      <ApolloProvider client={client}>{children}</ApolloProvider>
-    </ChakraProvider>
+    <ApolloProvider client={client}>{children}</ApolloProvider>
   );
 };

@@ -1,0 +1,12 @@
+@tailwind utilities;
+@tailwind base;
+@tailwind components;
+
+:root {
+    --width-xl: 1440px;
+}
+
+main {
+    max-width: var(--width-xl);
+    margin: 0 auto;
+}

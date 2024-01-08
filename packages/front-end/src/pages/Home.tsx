@@ -1,5 +1,5 @@
 export default () => (
-    <div className="home">
+    <main className="home">
         Placeholder
-    </div>
+    </main>
 );

@@ -6,6 +6,7 @@ export default defineConfig({
     test: {
         environment: 'happy-dom'
     },
-    plugins: [react()],
-    root: "src"
+    plugins: [
+        react(),
+    ],
 });
