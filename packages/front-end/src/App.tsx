@@ -9,8 +9,6 @@ import Loader from "./components/Loader";
 import "./assets/global.css";
 
 const Home = lazy(() => import('./pages/Home'));
-const SignIn = lazy(() => import('./components/SignIn'));
-const SignUp = lazy(() => import('./pages/SignUp'));
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -23,8 +21,6 @@ export const App = () => {
                     <Suspense fallback={<Loader />}>
                         <Routes>
                             <Route index element={<Home />} />
-                            <Route path="/sign-in" element={<SignIn />} />
-                            <Route path="/sign-up" element={<SignUp />} />
                         </Routes>
                     </Suspense>
                 </BrowserRouter>

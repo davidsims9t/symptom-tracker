@@ -18,10 +18,10 @@ const Navbar = () => {
             <div className="flex gap-2 items-center">
                 {isSignedIn && isLoaded && (
                     <>
-                        <Link to="/" className={classes.navBtn}>
+                        <Link to="/" className="btn-gradient">
                             Dashboard
                         </Link>
-                        <button onClick={() => signOut()} className={classes.navBtn}>
+                        <button onClick={() => signOut()} className="btn-gradient">
                             Sign Out
                         </button>
                         {user?.hasImage && (
@@ -30,7 +30,7 @@ const Navbar = () => {
                     </>
                 )}
                 {!isSignedIn && isLoaded && (
-                    <button onClick={() => setModalOpen(true)} className={classes.navBtn}>
+                    <button onClick={() => setModalOpen(true)} className="btn-gradient">
                         Sign In
                     </button>
                 )}

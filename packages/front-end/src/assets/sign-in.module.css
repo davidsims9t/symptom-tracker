@@ -17,6 +17,12 @@
     width: 100%;
 }
 
+.signInGoogle {
+    @apply p-2 my-2 border border-slate-100 rounded-md text-slate-800;
+    width: 100%;
+}
+
 .signInBtn {
     @apply bg-black p-2 rounded-md text-white mt-4;
+    width: 100%;
 }

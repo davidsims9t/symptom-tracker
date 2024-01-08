@@ -16,9 +16,27 @@ main {
 }
 
 @layer components {
-    .btn {
-        @apply bg-gradient-to-r;
-        @apply from-danube-50;
-        @apply to-danube-100;
+    .btn-gradient {
+        @apply rounded-lg bg-gradient-to-r from-danube-50 border-2 border-danube-50 to-danube-100 p-2;
+
+        &:hover {
+            @apply from-danube-200 to-danube-300 border-danube-400;
+        }
+    }
+
+    .btn-gradient-outline {
+        @apply rounded-lg bg-gradient-to-r from-danube-50 border-2 border-danube-50 to-danube-100 p-2;
+
+        &:hover {
+            @apply from-danube-200 to-danube-300 border-danube-400;
+        }
+    }
+}
+
+a {
+    @apply text-slate-500;
+
+    &:hover {
+        @apply text-slate-700;
     }
 }

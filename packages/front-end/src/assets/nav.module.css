@@ -6,11 +6,3 @@
 
 .navList {
 }
-
-.navBtn {
-    @apply rounded-lg bg-gradient-to-r from-danube-50 to-danube-100 p-2 border border-danube-50;
-
-    &:hover {
-        @apply from-danube-200 to-danube-300;
-    }
-}
