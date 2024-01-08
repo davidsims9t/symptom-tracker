@@ -6,7 +6,19 @@
     --width-xl: 1440px;
 }
 
+body {
+    font-family: Lato, sans-serif;
+}
+
 main {
     max-width: var(--width-xl);
-    margin: 0 auto;
+    @apply mx-auto;
+}
+
+@layer components {
+    .btn {
+        @apply bg-gradient-to-r;
+        @apply from-danube-50;
+        @apply to-danube-100;
+    }
 }

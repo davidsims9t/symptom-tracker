@@ -1,0 +1,22 @@
+.signInModalWrapper {
+    background: rgba(0, 0, 0, .5);
+
+    @apply flex justify-center items-center absolute z-10 inset-0 backdrop-blur-sm;
+}
+
+.signInModal {
+    @apply w-96 shadow-sm rounded-md p-8 relative z-20 bg-white;
+
+    & h3 {
+        @apply font-semibold text-4xl p-2 text-center;
+    }
+}
+
+.input {
+    @apply p-2 my-2 border border-slate-100 rounded-md text-slate-800;
+    width: 100%;
+}
+
+.signInBtn {
+    @apply bg-black p-2 rounded-md text-white mt-4;
+}
