@@ -7,18 +7,18 @@ export class Result<T> {
     constructor(isSuccessful: boolean, error?: string, value?: T) {
         if (isSuccessful && error) {
             throw new Error("InvalidOperation: A result cannot be successful and contain an error");
-          }
+        }
 
-          if (!isSuccessful && !error) {
+        if (!isSuccessful && !error) {
             throw new Error("InvalidOperation: A failing result needs to contain an error message");
-          }
-      
-          this.isSuccessful = isSuccessful;
-          this.isFailure = !isSuccessful;
-          this.#error = error;
-          this.#value = value;
-          
-          Object.freeze(this);
+        }
+
+        this.isSuccessful = isSuccessful;
+        this.isFailure = !isSuccessful;
+        this.#error = error;
+        this.#value = value;
+
+        Object.freeze(this);
     }
 
     get value() {
@@ -34,6 +34,6 @@ export class Result<T> {
     }
 
     static error = (value: string) => {
-        return new Result(true, value, null);
+        return new Result(false, value, null);
     }
 }

@@ -2,7 +2,7 @@ import { Result } from "../../shared/core/result";
 import ValueObject from "../../shared/domain/value-object";
 
 export type UserNameProps = {
-    value: string;
+    value?: string;
 };
 
 export class UserName extends ValueObject<UserNameProps> {
@@ -14,6 +14,7 @@ export class UserName extends ValueObject<UserNameProps> {
     }
 
     isValidName() {
+        if (!this.props.value) return false;
         return this.props.value.length >= UserName.minLength && this.props.value.length <= UserName.maxLength;
     }
 
@@ -22,6 +23,10 @@ export class UserName extends ValueObject<UserNameProps> {
     }
 
     static create(props: UserNameProps) {
+        if (!props.value) {
+            return Result.ok(null);
+        }
+
         const userName = new UserName(props);
 
         if (!userName.isValidName()) {
