@@ -1,9 +1,9 @@
 import { v4 as uuidv4 } from "uuid";
 
 export class UniqueEntityID {
-    #value?: string | number;
+    #value?: string | number | null;
 
-    constructor(id?: string | number) {
+    constructor(id?: string | number | null) {
         this.#value = id || uuidv4();
     }
 

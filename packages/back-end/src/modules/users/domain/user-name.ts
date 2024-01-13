@@ -2,7 +2,7 @@ import { Result } from "../../shared/core/result";
 import ValueObject from "../../shared/domain/value-object";
 
 export type UserNameProps = {
-    value?: string;
+    value?: string | null;
 };
 
 export class UserName extends ValueObject<UserNameProps> {

@@ -1,20 +1,26 @@
 import prisma from "../../../shared/infra/prisma/client";
 import { User } from "../../domain/user";
+import { fromPersistence, toDomain } from "../mappers";
 import { UserRepo } from "../user";
 
 export class PrismaUserRepo implements UserRepo {
     async getUsers() {
-        const users = await prisma.user.findMany({
-        });
+        const users = await prisma.user.findMany({});
+        if (!users) return;
 
-        return users;
+        return users.map(fromPersistence);
     }
 
-    async getUserById(id: string) {
-        const user = await prisma.user.find({
+    async getUserById(id: number | string) {
+        const user = await prisma.user.findFirst({
+            where: {
+                id: +id
+            }
         });
 
-        return user;
+        if (!user) return;
+
+        return fromPersistence(user);
     }
 
     async save(user: User) {

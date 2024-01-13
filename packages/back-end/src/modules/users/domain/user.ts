@@ -7,26 +7,25 @@ import UserLogin from "./events/user-login";
 import UserUpdated from "./events/user-updated";
 import UserBirthDate from "./user-birthdate";
 import UserEmail from "./user-email";
+import UserGender from "./user-gender";
 import UserName from "./user-name";
 import UserPassword from "./user-password";
 
 export type UserProps = {
     email: UserEmail;
     birthDate: UserBirthDate;
-    username: UserName;
-    password?: UserPassword;
-    isEmailVerified?: boolean;
-    isAdminUser?: boolean;
-    accessToken?: JWTToken;
-    refreshToken?: RefreshToken;
-    isDeleted?: boolean;
-    isLocked?: boolean;
-    created?: Date;
-    updated?: Date;
-    lastLogin?: Date;
-    firstName?: string;
-    lastName?: string;
-    gender?: string;
+    username?: UserName | null;
+    password?: UserPassword | null;
+    isEmailVerified?: boolean | null;
+    isAdminUser?: boolean | null;
+    isDeleted?: boolean | null;
+    isLocked?: boolean | null;
+    created?: Date | null;
+    updated?: Date | null;
+    lastLogin?: Date | null;
+    firstName?: string | null;
+    lastName?: string | null;
+    gender?: UserGender | null;
 };
 
 export class User extends AggregateRoot<UserProps> {
@@ -65,11 +64,9 @@ export class User extends AggregateRoot<UserProps> {
         }
     }
 
-    setAccessToken(token: JWTToken, refreshToken: RefreshToken) {
+    setLastLogin() {
         const userLogin = new UserLogin(this);
         this.addDomainEvent(userLogin);
-        this.props.accessToken = token;
-        this.props.refreshToken = refreshToken;
         this.props.lastLogin = new Date();
     }
 }

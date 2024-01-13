@@ -3,7 +3,7 @@ import ValueObject from "../../shared/domain/value-object";
 
 export const genders = ["male", "female", "neutral", "non-binary", "agender", "transgender", "gender-fluid"] as const;
 export type UserGenderProps = {
-    value?: typeof genders[number];
+    value?: typeof genders[number] | null;
 };
 
 export class UserGender extends ValueObject<UserGenderProps> {

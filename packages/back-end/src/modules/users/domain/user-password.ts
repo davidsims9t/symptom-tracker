@@ -2,7 +2,7 @@ import { Result } from "../../shared/core/result";
 import ValueObject from "../../shared/domain/value-object";
 
 export type UserPasswordProps = {
-    value: Email;
+    value?: string | null;
 };
 
 export class UserPassword extends ValueObject<UserPasswordProps> {
@@ -13,6 +13,7 @@ export class UserPassword extends ValueObject<UserPasswordProps> {
     }
 
     isValidPassword() {
+        if (!this.props.value) return;
         return this.props.value.length >= UserPassword.minLength;
     }
 
@@ -21,13 +22,13 @@ export class UserPassword extends ValueObject<UserPasswordProps> {
     }
 
     static create(props: UserPasswordProps) {
-        const userName = new UserPassword(props);
+        const password = new UserPassword(props);
 
-        if (!userName.isValidPassword()) {
+        if (props.value && !password.isValidPassword()) {
             return Result.error(`Invalid password. Password must be at least ${UserPassword.minLength} characters.`);
         }
 
-        return Result.ok(userName);
+        return Result.ok(password);
     }
 }
 

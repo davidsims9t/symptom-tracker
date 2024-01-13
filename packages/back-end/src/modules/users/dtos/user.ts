@@ -1,28 +1,20 @@
 export type UserDto = {
     gender?: "male" | "female" | "neutral" | "non-binary" | "agender" | "transgender" | "gender-fluid";
-    id?: string;
-    username?: string;
+    id?: string | null;
+    username?: string | null;
     email: Email;
-    password?: string;
+    password?: string | null;
     birthMonth: number;
     birthYear: number;
     birthDay: number;
-    firstName?: string;
-    lastName?: string;
-    isEmailVerified?: boolean;
-    isAdminUser?: boolean;
-    isDeleted?: boolean;
-};
-
-export type UserPrismaDto = {
-    username: string;
-    email: Email;
-    birthMonth: number;
-    birthYear: number;
-    birthDay: number;
-    isEmailVerified?: boolean;
-    isAdminUser?: boolean;
-    isDeleted?: boolean;
+    firstName?: string | null;
+    lastName?: string | null;
+    isEmailVerified?: boolean | null;
+    isAdminUser?: boolean | null;
+    isDeleted?: boolean | null;
+    createdAt?: Date | null;
+    updatedAt?: Date | null;
+    lastLogin?: Date | null;
 };
 
 type ClerkEmailVerification = {

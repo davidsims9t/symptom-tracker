@@ -1,12 +1,14 @@
-import { Result } from "../../shared/core/result";
+import { emailAddresses } from "@clerk/clerk-sdk-node";
 import UniqueEntityID from "../../shared/domain/id";
-import { User, UserProps } from "../domain/user";
+import { User } from "../domain/user";
 import UserBirthDate from "../domain/user-birthdate";
 import UserEmail from "../domain/user-email";
-import UserGender, { genders } from "../domain/user-gender";
+import UserGender, { UserGenderProps, genders } from "../domain/user-gender";
 import UserName from "../domain/user-name";
-import { UserClerkDto, UserDto, UserPrismaDto } from "../dtos/user";
-export const toDomain = (user: UserDto): Result<User> => {
+import UserPassword from "../domain/user-password";
+import { UserClerkDto, UserDto } from "../dtos/user";
+import { User as PrismaUser } from "@prisma/client";
+export const toDomain = (user: UserDto): User => {
     const username = UserName.create({
         value: user.username
     });
@@ -40,38 +42,70 @@ export const toDomain = (user: UserDto): Result<User> => {
     if (gender.error) {
         throw new Error(gender.error);
     }
+    
+    const password = UserPassword.create({
+        value: user.password
+    });
+
+    if (password.error) {
+        throw new Error(password.error);
+    }
 
     const id = new UniqueEntityID(user.id);
 
     const result = User.create({
+        ...user,
         username: username.value!,
         isAdminUser: user.isAdminUser,
         isDeleted: user.isDeleted,
         isEmailVerified: user.isEmailVerified,
         email: email.value!,
         birthDate: birthDate.value!,
-        gender: gender.value!
+        gender: gender.value!,
+        password:  password.value!,
     }, id);
 
-    return result;
-}
+    if (result.error) {
+        throw new Error(result.error);
+    }
 
-export const toDto = (user: User): UserDto => {
-    return {
-        username: user.value.username.value,
-        password: user.value.password?.value,
-        email: user.value.email.value,
-        birthDay: user.value.birthDate.props.birthDay,
-        birthMonth: user.value.birthDate.props.birthMonth,
-        birthYear: user.value.birthDate.props.birthYear,
-    };
-}
-
-export const toPersistence = (user: User): UserPrismaDto => {
-    return {};
+    return result.value!;
 };
 
-export const fromClerkToDomain = (user: UserClerkDto): UserProps | Error => {
+export const fromPersistence = (user: PrismaUser): User => {
+    const birthDay = new Date(user.dob);
+
+    const domain = toDomain({
+        ...user,
+        email: user.email as Email,
+        gender: user.gender as UserGenderProps["value"],
+        birthMonth: birthDay.getMonth() + 1,
+        birthYear: birthDay.getFullYear(),
+        birthDay: birthDay.getDate(),
+    });
+
+    return domain;
+};
+
+export const toPersistence = (user: User): PrismaUser => {
+    return {
+        isAdminUser: !!user.value.isAdminUser,
+        isDeleted: !!user.value.isDeleted,
+        isEmailVerified: !!user.value.isEmailVerified,
+        email: user.value.email.value,
+        createdAt: user.value.created!,
+        updatedAt: user.value.updated!,
+        dob: user.value.birthDate.value,
+        firstName: user.value.firstName!,
+        lastName: user.value.lastName!,
+        gender: user.value.gender?.value!,
+        lastLogin: user.value.lastLogin!,
+        username: user.value.username?.value!,
+        id: user.id.toString()
+    };
+};
+
+export const fromClerkToDomain = (user: UserClerkDto): User => {
     const birthday = new Date(user.birthday);
 
     const domain = toDomain({
@@ -83,11 +117,13 @@ export const fromClerkToDomain = (user: UserClerkDto): UserProps | Error => {
         firstName: user.first_name,
         lastName: user.last_name,
         gender: user.gender as unknown as typeof genders[number],
+        isAdminUser: false,
+        isDeleted: false,
+        isEmailVerified: !!user.email_addresses?.[0]?.verification,
+        createdAt: user.created_at ? new Date(user.created_at) : null,
+        updatedAt: user.updated_at ? new Date(user.updated_at) : null,
+        lastLogin: user.last_sign_in_at ? new Date(user.last_sign_in_at) : null
     });
 
-    if (domain.isFailure) {
-        return new Error(domain.error);
-    }
-
-    return domain.value?.value!;
+    return domain;
 };
