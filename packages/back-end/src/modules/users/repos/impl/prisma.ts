@@ -1,8 +1,8 @@
 import prisma from "../../../shared/infra/prisma/client";
 import { User } from "../../domain/user";
-import { IUserRepo } from "../user";
+import { UserRepo } from "../user";
 
-export class PrismaUserRepo implements IUserRepo {
+export class PrismaUserRepo implements UserRepo {
     async getUsers() {
         const users = await prisma.user.findMany({
         });

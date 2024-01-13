@@ -34,6 +34,7 @@ model Test {
   providerId            Int
   resultOn              DateTime
   collectedOn           DateTime
+  reportedOn            DateTime
   result                Result[]
   resultStatus          String?
   aggregateTestResult   AggregateTestResult? @relation(fields: [aggregateTestResultId], references: [id])
