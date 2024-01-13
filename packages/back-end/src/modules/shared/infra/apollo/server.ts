@@ -1,12 +1,19 @@
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import { resolvers } from "./resolvers.js";
 import typeDefs from './type-defs.js';
-import { PrismaClient } from '@prisma/client';
 import clerkClient from '@clerk/clerk-sdk-node';
+import express from "express";
 
-export const prisma = new PrismaClient();
+// const app = express();
+
+// app.post('/graphql', (req, res) => {
+//     console.log(req.body);
+//     return res.status(200);
+// });
+
+// app.listen(4000, () => console.log('running'));
 
 const server = new ApolloServer({
     typeDefs,
@@ -23,11 +30,13 @@ const { url } = await startStandaloneServer(server, {
 
         const clerkUser = await clerkClient.users.getUser(jwt.sub);
 
-        const user = await prisma.user.findFirst({
-            where: {
-                sub: jwt.sub
-            }
-        });
+        // const user = await prisma.user.findFirst({
+        //     where: {
+        //         sub: jwt.sub
+        //     }
+        // });
+
+        const user = {};
 
         return { user };
     },

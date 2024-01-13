@@ -1,6 +1,6 @@
 import prisma from "../../../shared/infra/prisma/client";
 import { User } from "../../domain/user";
-import { fromPersistence, toDomain } from "../mappers";
+import { fromPersistence } from "../mappers";
 import { UserRepo } from "../user";
 
 export class PrismaUserRepo implements UserRepo {
@@ -11,10 +11,10 @@ export class PrismaUserRepo implements UserRepo {
         return users.map(fromPersistence);
     }
 
-    async getUserById(id: number | string) {
+    async getUserById(id: string) {
         const user = await prisma.user.findFirst({
             where: {
-                id: +id
+                id
             }
         });
 
@@ -25,11 +25,11 @@ export class PrismaUserRepo implements UserRepo {
 
     async save(user: User) {
         if (!user.id) {
-            const saved = await prisma.user.create();
+            const saved = await prisma.user.create(user);
             return !!saved;
         }
 
-        const updated = await prisma.user.update();
+        const updated = await prisma.user.update(user);
         return !!updated;
     }
 };
