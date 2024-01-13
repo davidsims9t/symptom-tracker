@@ -2,6 +2,10 @@ import { Result } from "../../shared/core/result";
 import { AggregateRoot } from "../../shared/domain/aggreate-root";
 import { UniqueEntityID } from "../../shared/domain/id";
 import { UserProps } from "../../users/domain/user";
+import LabResultCreated from "./events/lab-created";
+import LabResultDeleted from "./events/lab-deleted";
+import LabResultUpdated from "./events/lab-updated";
+import ResultStatus from "./result-status";
 
 export type LabResultsProps = {
     name: string;
@@ -11,7 +15,7 @@ export type LabResultsProps = {
     resultOn?: Date;
     reportedOn?: Date;
     user?: UserProps;
-    resultStatus?: "FINAL";
+    resultStatus?: ResultStatus;
 };
 
 export class LabResult extends AggregateRoot<LabResultsProps> {
@@ -24,35 +28,27 @@ export class LabResult extends AggregateRoot<LabResultsProps> {
     }
 
     static create(props: LabResultsProps, id?: UniqueEntityID) {
-        const user = new LabResult({
+        const lab = new LabResult({
             ...props,
             isDeleted: !!props.isDeleted,
         }, id);
 
         if (!id) {
-            const userCreated = new UserCreated(user);
-            user.addDomainEvent(userCreated);
+            const userCreated = new LabResultCreated(lab);
+            lab.addDomainEvent(userCreated);
         } else {
-            const userUpdated = new UserUpdated(user);
-            user.addDomainEvent(userUpdated);
+            const userUpdated = new LabResultUpdated(lab);
+            lab.addDomainEvent(userUpdated);
         }
 
-        return Result.ok(user);
+        return Result.ok(lab);
     }
 
     delete() {
         if (!this.props.isDeleted) {
-            const userDeleted = new UserDeleted(this);
-            this.addDomainEvent(userDeleted);
+            const labDeleted = new LabResultDeleted(this);
+            this.addDomainEvent(labDeleted);
             this.props.isDeleted = true;
         }
-    }
-
-    setAccessToken(token: JWTToken, refreshToken: RefreshToken) {
-        const userLogin = new UserLogin(this);
-        this.addDomainEvent(userLogin);
-        this.props.accessToken = token;
-        this.props.refreshToken = refreshToken;
-        this.props.lastLogin = new Date();
     }
 }

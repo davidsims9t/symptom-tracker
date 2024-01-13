@@ -1,5 +1,6 @@
 import prisma from "../../../shared/infra/prisma/client";
 import { User } from "../../../users/domain/user";
+import { LabResult } from "../../domain/lab-result";
 import { LabRepo } from "../lab";
 
 export class PrismaLabRepo implements LabRepo {
@@ -20,7 +21,7 @@ export class PrismaLabRepo implements LabRepo {
         return lab;
     }
 
-    async save(user: Lab) {
+    async save(user: LabResult) {
         if (!user.id) {
             const saved = await prisma.lab.create();
             return !!saved;
