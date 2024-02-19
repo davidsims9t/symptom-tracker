@@ -7,8 +7,9 @@
   "scripts": {
     "test": "vitest",
     "coverage": "vitest --coverage",
-    "start": "ts-node --esm ./src/modules/shared/infra/apollo/server.ts",
-    "build": "tsc ./src/modules/shared/infra/apollo/server.ts"
+    "start-dev": "tsx ./src/modules/shared/infra/apollo/server.ts",
+    "start": "node",
+    "build": "tsc"
   },
   "author": "David Sims",
   "license": "ISC",
@@ -25,7 +26,7 @@
     "@types/uuid": "^9.0.7",
     "@vitest/coverage-v8": "^1.1.3",
     "prisma": "^5.8.0",
-    "ts-node": "^10.9.2",
+    "tsx": "^4.7.1",
     "vitest": "^1.1.3"
   }
 }

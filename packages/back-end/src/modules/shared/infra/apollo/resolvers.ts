@@ -4,7 +4,7 @@ export const resolvers = {
   Query: {
   },
   Mutation: {
-    saveUserFromClerk: async (_: any, data: { data: string }, context: any) => {
+    handleClerkWebhook: async (_: any, data: { data: string }, context: any) => {
       const json = JSON.parse(data.data);
       return {
         id: 1,

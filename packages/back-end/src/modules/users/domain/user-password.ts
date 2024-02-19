@@ -14,6 +14,8 @@ export class UserPassword extends ValueObject<UserPasswordProps> {
 
     isValidPassword() {
         if (!this.props.value) return;
+        if (!this.props.value.match(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/)) return;
+        if (!this.props.value.match(/[a-z]/) && !this.props.value.match(/[A-Z]/)) return;
         return this.props.value.length >= UserPassword.minLength;
     }
 
@@ -25,7 +27,7 @@ export class UserPassword extends ValueObject<UserPasswordProps> {
         const password = new UserPassword(props);
 
         if (props.value && !password.isValidPassword()) {
-            return Result.error(`Invalid password. Password must be at least ${UserPassword.minLength} characters.`);
+            return Result.error(`Invalid password. Password must be at least ${UserPassword.minLength} characters and contain one special character.`);
         }
 
         return Result.ok(password);

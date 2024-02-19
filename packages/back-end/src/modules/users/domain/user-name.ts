@@ -30,7 +30,7 @@ export class UserName extends ValueObject<UserNameProps> {
         const userName = new UserName(props);
 
         if (!userName.isValidName()) {
-            return Result.error(`Invalid username. Username must be between ${UserName.minLength} and ${UserName.maxLength}.`);
+            return Result.error(`Invalid username. Username must be between ${UserName.minLength} and ${UserName.maxLength} characters.`);
         }
 
         return Result.ok(userName);
