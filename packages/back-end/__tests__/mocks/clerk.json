@@ -1,42 +1,54 @@
 {
-    "data": {
-      "birthday": "07-25-1990",
-      "created_at": 1654012591514,
-      "email_addresses": [
-        {
-          "email_address": "example@example.org",
-          "id": "idn_29w83yL7CwVlJXylYLxcslromF1",
-          "linked_to": [],
-          "object": "email_address",
-          "verification": {
-            "status": "verified",
-            "strategy": "ticket"
-          }
+  "data": {
+    "backup_code_enabled": false,
+    "banned": false,
+    "create_organization_enabled": true,
+    "created_at": 1708317587175,
+    "delete_self_enabled": true,
+    "email_addresses": [
+      {
+        "email_address": "davidsims15@gmail.com",
+        "id": "idn_2cZSQ3RNa5tMZgTwit8Jgvw0Qx0",
+        "linked_to": [],
+        "object": "email_address",
+        "reserved": false,
+        "verification": {
+          "attempts": null,
+          "expire_at": null,
+          "status": "verified",
+          "strategy": "admin"
         }
-      ],
-      "external_accounts": [],
-      "external_id": "567772",
-      "first_name": "Example",
-      "gender": "male",
-      "id": "user_29w83sxmDNGwOuEthce5gg56FcC",
-      "last_name": "Example",
-      "locked": false,
-      "last_sign_in_at": 1654012591514,
-      "object": "user",
-      "password_enabled": true,
-      "phone_numbers": [],
-      "primary_email_address_id": "idn_29w83yL7CwVlJXylYLxcslromF1",
-      "primary_phone_number_id": null,
-      "primary_web3_wallet_id": null,
-      "private_metadata": {},
-      "profile_image_url": "https://www.gravatar.com/avatar?d=mp",
-      "public_metadata": {},
-      "two_factor_enabled": false,
-      "unsafe_metadata": {},
-      "updated_at": 1654012591835,
-      "username": null,
-      "web3_wallets": []
-    },
-    "object": "event",
-    "type": "user.created"
-  }
+      }
+    ],
+    "external_accounts": [],
+    "external_id": null,
+    "first_name": null,
+    "has_image": false,
+    "id": "user_2cZSQ23pDOTM5l6Z69f4J3fMdR3",
+    "image_url": "https://img.clerk.com/eyJ0eXBlIjoiZGVmYXVsdCIsImlpZCI6Imluc18yWXY2NFpBbFdYR2l2OEJUTUp4czQ1bklkTHciLCJyaWQiOiJ1c2VyXzJjWlNRMjNwRE9UTTVsNlo2OWY0SjNmTWRSMyJ9",
+    "last_active_at": null,
+    "last_name": null,
+    "last_sign_in_at": null,
+    "locked": false,
+    "lockout_expires_in_seconds": null,
+    "object": "user",
+    "password_enabled": true,
+    "phone_numbers": [],
+    "primary_email_address_id": "idn_2cZSQ3RNa5tMZgTwit8Jgvw0Qx0",
+    "primary_phone_number_id": null,
+    "primary_web3_wallet_id": null,
+    "private_metadata": {},
+    "profile_image_url": "https://www.gravatar.com/avatar?d=mp",
+    "public_metadata": {},
+    "saml_accounts": [],
+    "totp_enabled": false,
+    "two_factor_enabled": false,
+    "unsafe_metadata": {},
+    "updated_at": 1708317587186,
+    "username": null,
+    "verification_attempts_remaining": 100,
+    "web3_wallets": []
+  },
+  "object": "event",
+  "type": "user.created"
+}

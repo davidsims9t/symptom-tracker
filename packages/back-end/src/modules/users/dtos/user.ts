@@ -1,5 +1,5 @@
 export type UserDto = {
-    gender?: "male" | "female" | "neutral" | "non-binary" | "agender" | "transgender" | "gender-fluid";
+    gender?: "male" | "female" | "neutral" | "non-binary" | "agender" | "transgender" | "gender-fluid" | null;
     id?: string | null;
     username?: string | null;
     email: Email;

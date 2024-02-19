@@ -10,7 +10,7 @@ export default `
   }
   
   type Mutation {
-    saveUserFromClerk(
+    handleClerkWebhook(
       data: String
     ): User
   }

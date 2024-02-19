@@ -7,7 +7,7 @@
   "scripts": {
     "test": "vitest",
     "coverage": "vitest --coverage",
-    "start-dev": "tsx ./src/modules/shared/infra/apollo/server.ts",
+    "start-dev": "tsx --watch ./src/modules/shared/infra/apollo/server.ts",
     "start": "node",
     "build": "tsc"
   },

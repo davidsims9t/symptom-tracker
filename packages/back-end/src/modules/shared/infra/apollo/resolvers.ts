@@ -5,12 +5,16 @@ export const resolvers = {
   },
   Mutation: {
     handleClerkWebhook: async (_: any, data: { data: string }, context: any) => {
-      const json = JSON.parse(data.data);
-      return {
-        id: 1,
-        email: "test",
-        username: "test"
-      };
+      const webhook = JSON.parse(data.data);
+
+      switch (webhook.type) {
+        case "user.created":
+          break;
+        case "user.deleted":
+          break;
+        default:
+          throw new Error(`Unknown webhook: ${webhook.type}`);
+      }
     }
   }
 };

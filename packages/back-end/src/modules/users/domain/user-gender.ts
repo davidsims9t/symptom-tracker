@@ -1,7 +1,8 @@
 import { Result } from "../../shared/core/result";
 import ValueObject from "../../shared/domain/value-object";
+import { UserDto } from "../dtos/user";
 
-export const genders = ["male", "female", "neutral", "non-binary", "agender", "transgender", "gender-fluid"] as const;
+export const genders = ["male", "female", "neutral", "non-binary", "agender", "transgender", "gender-fluid"] as UserDto["gender"][];
 export type UserGenderProps = {
     value?: typeof genders[number] | null;
 };
